@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MedInFHIR"
+             x:Class="MedInFHIR.MainPage" NavigationPage.HasNavigationBar="False" NavigationPage.HasBackButton="False">
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Entry x:Name="edPatientID" Placeholder="PatientID" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="120" Completed="Button_Clicked"/>
+            <Button Text="Click" VerticalOptions="Center" HorizontalOptions="Center" Clicked="Button_Clicked" />
+            <Label FontSize="Medium" TextColor="Red" HorizontalOptions="Center" x:Name="lblError" />
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

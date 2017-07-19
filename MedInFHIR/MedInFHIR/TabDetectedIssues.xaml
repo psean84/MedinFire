@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedInFHIR.TabDetectedIssues" Title="Detected Issues">
+    <ContentPage.Content>
+        <StackLayout BindingContextChanged="StackLayout_BindingContextChanged">
+            <Label x:Name="lblError" />
+            <ListView x:Name="lstDetectedIssues">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame HasShadow="True" HorizontalOptions="Start" VerticalOptions="Start">
+                                <StackLayout>
+                                    <Label Text="{Binding Date, StringFormat='Date: {0}'}" PropertyChanged="Label_PropertyChanged" />
+                                    <Label Text="{Binding Severity, StringFormat='Severity: {0}'}" PropertyChanged="Label_PropertyChanged" />
+                                    <Label Text="{Binding Category, StringFormat='Category: {0}'}" PropertyChanged="Label_PropertyChanged" />
+                                    <Label Text="{Binding Mitigation, StringFormat='Mitigation: {0}'}" PropertyChanged="Label_PropertyChanged" />
+                                    <Label Text="{Binding Author, StringFormat='Author: {0}'}"  PropertyChanged="Label_PropertyChanged"/>
+                                    <Label Text="{Binding Implicated, StringFormat='Implicated: {0}'}" PropertyChanged="Label_PropertyChanged" />
+                                    <Label Text="{Binding Detail, StringFormat='Detail: {0}'}" PropertyChanged="Label_PropertyChanged" />
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

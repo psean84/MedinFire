@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedInFHIR.TabPatient"
+             Title="General Information" >
+    <ScrollView VerticalOptions="Start" HorizontalOptions="StartAndExpand" Margin="0" Padding="0">
+        <StackLayout VerticalOptions="Start" HorizontalOptions="StartAndExpand" Margin="0" Padding="0" Spacing="0" >
+            <Label FontSize="Medium" Text="Patient Information" HorizontalOptions="StartAndExpand" FontAttributes="Bold" />
+            <Frame HasShadow="True" VerticalOptions="Start" BackgroundColor="BurlyWood" HorizontalOptions="StartAndExpand" Margin="5" Padding="5" CornerRadius="10">
+                <StackLayout  BackgroundColor="BurlyWood" HorizontalOptions="StartAndExpand" >
+                    <Label Text="Name(s): " VerticalOptions="Start" Margin="0" />
+                    <StackLayout BindingContext="{Binding Names}" x:Name="nameStack" HorizontalOptions="StartAndExpand" BindingContextChanged="nameStack_BindingContextChanged" />
+                    <Label Text="{Binding Path=Active, StringFormat='Record Active: {0}'}" VerticalOptions="Start" Margin="0" PropertyChanged="Label_PropertyChanged" />
+                    <Label Text="{Binding Path=Gender, StringFormat='Gender: {0}'}" VerticalOptions="Start"  Margin="0" PropertyChanged="Label_PropertyChanged"/>
+                    <Label Text="{Binding Path=BirthDate, StringFormat='Date of Birth: {0:dd-MMM-yyyy}'}"  VerticalOptions="Start" Margin="0" PropertyChanged="Label_PropertyChanged"/>
+                    <Label Text="{Binding Path=PreferredLanguage, StringFormat='Language: {0}'}" VerticalOptions="Start" Margin="0"  PropertyChanged="Label_PropertyChanged"/>
+                    <Label Text="{Binding Path=MaritalStatus, StringFormat='Marital Status: {0}'}"  VerticalOptions="Start" Margin="0" PropertyChanged="Label_PropertyChanged"/>
+                    <Label Text="{Binding Path=Organization, StringFormat='Insurance company: {0}'}"  VerticalOptions="Start" Margin="0" PropertyChanged="Label_PropertyChanged"/>
+                    <Label Text="{Binding Path=GeneralPractitioner, StringFormat='General Practioner: {0}'}"  VerticalOptions="Start" Margin="0" PropertyChanged="Label_PropertyChanged"/>
+                    <Label Text="Contact Information" FontAttributes="Bold" />
+                    <StackLayout BindingContext="{Binding Path=Telecom}" Margin="0" HorizontalOptions="Start" VerticalOptions="Start" x:Name="telecomStack" BindingContextChanged="telecomStack_BindingContextChanged" />
+                    <Label Text="Address(es) of the patient:" FontAttributes="Bold" />
+                    <StackLayout BindingContext="{Binding Path=Addresses}" HorizontalOptions="Start" VerticalOptions="Start" BindingContextChanged="stAddreses_BindingContextChanged"/>
+                </StackLayout>
+            </Frame>
+            <Label Text="Contact Person(s): " FontAttributes="Bold" FontSize="Medium"/>
+            <ListView ItemsSource="{Binding Path=Contact}"  x:Name="lstContact" HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="0" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame HasShadow="True" VerticalOptions="Start" BackgroundColor="Coral" HorizontalOptions="StartAndExpand" Margin="5" Padding="5" CornerRadius="10">
+                                <StackLayout VerticalOptions="Start">
+                                    <Label TextColor="Black" Text="{Binding Name, StringFormat='Name: {0}'}" FontAttributes="Bold"  PropertyChanged="Label_PropertyChanged"/>
+                                    <Label TextColor="Black" Text="{Binding Relationship, StringFormat='Relationship with patient: {0}'}"  PropertyChanged="Label_PropertyChanged"/>
+                                    <Label TextColor="Black" Text="{Binding Gender, StringFormat='Gender: {0}'}"  PropertyChanged="Label_PropertyChanged"/>
+                                    <Label TextColor="Black" Text="{Binding Organisation, StringFormat='Organisation: {0}'}"  PropertyChanged="Label_PropertyChanged"/>
+                                    <Label TextColor="Black" Text="{Binding StartPeriod, StringFormat='Starting From: {0:dd-MMM-yyyy}'}" PropertyChanged="Label_PropertyChanged" />
+                                    <Label TextColor="Black" Text="{Binding EndPeriod, StringFormat='Ending at: {0:dd-MMM-yyyy}'}" PropertyChanged="Label_PropertyChanged" />
+                                    <Label TextColor="Black" Text="Contact Information" FontAttributes="Bold" />
+                                    <StackLayout BindingContext="{Binding Path=Telecom}" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" BindingContextChanged="telecomStack_BindingContextChanged" />
+                                    <Label Text="Adress: " FontAttributes="Bold" />
+                                    <Frame BindingContext="{Binding Address}" HasShadow="True" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0" BindingContextChanged="lineStack_BindingContextChanged" />
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
